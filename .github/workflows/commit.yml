@@ -13,7 +13,6 @@ jobs:
     - name: Set up secret file
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.TEST_SEC }}
-        ...
-        ...
+        # Add other secrets here if needed
       run: |
-        echo ${{secrets.TEST_SEC}} | sed 's/./& /g'
+        echo "$AWS_ACCESS_KEY_ID" | sed 's/./& /g'
